@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "68459524044",
+    "project_id": "play-box-53d6b",
+    "storage_bucket": "play-box-53d6b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68459524044:android:cdf8dd182151f35c083769",
+        "android_client_info": {
+          "package_name": "com.example.box"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJi2DhGg-uNpcOu2kicPugp7JQ21huMkM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
