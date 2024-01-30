@@ -47,8 +47,8 @@ class FetchingActivity : AppCompatActivity() {
                 Database = snapshot.getValue(database::class.java)!!
 //                binding.upuser.text.toString()
 //                binding.upemail.text.toString()
-                binding.upuser.setText(Database.name)
-                binding.upemail.setText(Database.email)
+//                binding.upuser.setText(Database.name)
+//                binding.upemail.setText(Database.email)
 
             }
 
