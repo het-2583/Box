@@ -7,13 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.box.databinding.ActivitySignUpBinding
 import com.example.box.SignInActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var firestore: FirebaseFirestore
+    private lateinit var dbref: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +22,8 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
-        firestore = FirebaseFirestore.getInstance()
+        dbref = FirebaseDatabase.getInstance().getReference("database")
+
 
         binding.sbutton.setOnClickListener {
             val suser = binding.suser.text.toString()
@@ -29,38 +31,18 @@ class SignUpActivity : AppCompatActivity() {
             val pass = binding.spassword.text.toString()
             val cpass = binding.cpassword.text.toString()
 
+
             if (suser.isNotEmpty() && email.isNotEmpty() && pass.isNotEmpty() && cpass.isNotEmpty()) {
                 if (pass == cpass) {
                     firebaseAuth.createUserWithEmailAndPassword(email, pass)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                // User creation successful, now add additional info to Firestore
-                                val userId = firebaseAuth.currentUser?.uid
-                                userId?.let { uid ->
-                                    val user = hashMapOf(
-                                        "is_admin" to 1,  // Set is_admin to 1 for an admin user
-                                        "email" to email,
-                                        "username" to suser
-                                    )
-
-                                    firestore.collection("users").document(uid)
-                                        .set(user)
-                                        .addOnSuccessListener {
-                                            binding.suser.text.clear()
-                                            binding.semail.text.clear()
-                                            binding.spassword.text.clear()
-                                            binding.cpassword.text.clear()
-                                            startActivity(Intent(this, SignInActivity::class.java))
-                                            finish()
-                                        }
-                                        .addOnFailureListener { e ->
-                                            Toast.makeText(
-                                                this,
-                                                "Error adding user information to Firestore: ${e.message}",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                        }
-                                }
+                                binding.suser.text.clear()
+                                binding.semail.text.clear()
+                                binding.spassword.text.clear()
+                                binding.cpassword.text.clear()
+                                startActivity(Intent(this, SignInActivity::class.java))
+                                finish()
                             } else {
                                 Toast.makeText(
                                     this,
@@ -68,7 +50,18 @@ class SignUpActivity : AppCompatActivity() {
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
-                            // Password strength checks go here
+                            if(!pass.matches(".*[A-Z].*".toRegex()))
+                            {
+                                Toast.makeText(this, "Must contain 1 uppercase", Toast.LENGTH_SHORT).show()
+                            }
+                            if(!pass.matches(".*[a-z].*".toRegex()))
+                            {
+                                Toast.makeText(this, "Must contain 1 Lowercase", Toast.LENGTH_SHORT).show()
+                            }
+                            if(!pass.matches(".*[@#/$%^+=&].*".toRegex()))
+                            {
+                                Toast.makeText(this, "Must contain 1 [@#/$%^+=&]", Toast.LENGTH_SHORT).show()
+                            }
                         }
                 } else {
                     Toast.makeText(this, "Password is not matching", Toast.LENGTH_SHORT).show()
@@ -78,4 +71,14 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
+    private fun saveUserdata() {
+        val name = binding.suser.text.toString()
+        val email = binding.semail.text.toString()
+        val pass = binding.spassword.text.toString()
+        val uid=dbref.push().key!!
+        val user=database.SignIn(uid,name,email,pass)
+        dbref.child(uid).setValue(user)
+    }
 }
+
+
