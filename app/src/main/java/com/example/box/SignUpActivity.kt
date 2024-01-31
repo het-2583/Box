@@ -21,11 +21,14 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         firebaseAuth = FirebaseAuth.getInstance()
         dbref = FirebaseDatabase.getInstance().getReference("database")
 
 
         binding.sbutton.setOnClickListener {
+            saveUserdata()
             val suser = binding.suser.text.toString()
             val email = binding.semail.text.toString()
             val pass = binding.spassword.text.toString()
