@@ -87,7 +87,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .replace(R.id.fragment_container, ShareFragment()).commit()
             R.id.nav_about -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, AboutFragment()).commit()
-            R.id.nav_logout -> Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show()
+            R.id.nav_logout -> {
+                if (auth.currentUser != null) {
+                    auth.signOut()
+                    startActivity(Intent(this, GetStartedActivity::class.java))
+                    finish()
+                }
+            }
+
+//            R.id.nav_logout -> auth.signOut() -> startActivity(Intent(this, GetStartedActivity::class.java))
+//                Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show()
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
