@@ -53,15 +53,15 @@ class SignUpActivity : AppCompatActivity() {
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
-                            if(!pass.matches(".*[A-Z].*".toRegex()))
+                            if(!pass.matches(".[A-Z].".toRegex()))
                             {
                                 Toast.makeText(this, "Must contain 1 uppercase", Toast.LENGTH_SHORT).show()
                             }
-                            if(!pass.matches(".*[a-z].*".toRegex()))
+                            if(!pass.matches(".[a-z].".toRegex()))
                             {
                                 Toast.makeText(this, "Must contain 1 Lowercase", Toast.LENGTH_SHORT).show()
                             }
-                            if(!pass.matches(".*[@#/$%^+=&].*".toRegex()))
+                            if(!pass.matches(".[@#/$%^+=&].".toRegex()))
                             {
                                 Toast.makeText(this, "Must contain 1 [@#/$%^+=&]", Toast.LENGTH_SHORT).show()
                             }
@@ -83,5 +83,3 @@ class SignUpActivity : AppCompatActivity() {
         dbref.child(uid).setValue(user)
     }
 }
-
-
