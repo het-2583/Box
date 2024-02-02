@@ -42,6 +42,10 @@
             android:name=".MainActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".AddGroundActivity"
+            android:exported="false" />
+
 
     </application>
 

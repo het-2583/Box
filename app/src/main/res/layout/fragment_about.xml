@@ -4,13 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lgrey"
     tools:context=".AboutFragment">
+
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="About Us Fragment"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"
-        android:textColor="@color/lavender"/>
+        android:text="About : "
+        android:textColor="@color/red"
+        android:layout_marginTop="50dp"
+        android:textSize="30sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="In urban areas there is a new trend going which is to play games  in box. platform where client can find the best suitable  ground for playing games. He can check the profile and rating of ground  for booking. It is a platform where you can book ground for arranging  tournaments having live score by anyone can see scores around the world."
+        android:textColor="@color/red"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="50dp"
+        android:textSize="30sp" />
+
+
+
 </RelativeLayout>

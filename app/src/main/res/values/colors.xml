@@ -11,8 +11,11 @@
     <color name="blue_5">#3B7DD8</color>
     <color name="lgrey">#F5F7F8</color>
     <color name="Orange">#FFA500</color>
+    <color name="red">#F44336</color>
+    <color name="LOrange">#E6A646</color>
     <color name="lavender">#8692f7</color>
     <color name="lgreen">#A7D397</color>
+    <color name="gray">#808080</color>
     <color name="card_graph_bg_color">#4A91F2</color>
     <color name="graph_heading_color">#FFFFFF</color>
 

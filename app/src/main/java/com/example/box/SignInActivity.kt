@@ -40,7 +40,7 @@ class SignInActivity: AppCompatActivity() {
                 firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { signInTask ->
                     if (signInTask.isSuccessful) {
                         // Navigate to MainActivity after successful sign-in
-                        val intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, AddGroundActivity::class.java)
                         startActivity(intent)
                     }
                     else {
