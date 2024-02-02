@@ -3,7 +3,6 @@ package com.example.box
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -12,8 +11,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.box.databinding.ActivityMainBinding
-import com.example.box.databinding.ActivitySignInBinding
-import com.example.box.databinding.AddGroundBinding
 import com.example.box.databinding.HomepageBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.Firebase
@@ -22,7 +19,6 @@ import com.google.firebase.auth.auth
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawerLayout: DrawerLayout
-
     private var binding: ActivityMainBinding? = null
     private lateinit var auth: FirebaseAuth
 
@@ -33,7 +29,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //        binding = ActivityMainBinding.inflate(layoutInflater)
 //        setContentView(binding?.root)
         setContentView(R.layout.activity_main)
-        auth = Firebase.auth
 
         drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
@@ -78,7 +73,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //        }
     }
 
-    //    override fun onCreateOptionsMenu(menu:Menu?): Boolean {
+//    override fun onCreateOptionsMenu(menu:Menu?): Boolean {
 //        menuInflater. inflate(R.menu.menu,menu)
 //        return super.onCreateOptionsMenu(menu)
 //    }
@@ -92,31 +87,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .replace(R.id.fragment_container, ShareFragment()).commit()
             R.id.nav_about -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, AboutFragment()).commit()
-
-            R.id.nav_logout -> {
-                Log.d("AuthState", "auth: $auth, currentUser: ${auth?.currentUser}")
-                if (auth != null && auth.currentUser != null) {
-                    auth.signOut()
-                    Log.d("Logout", "User signed out successfully")
-                    startActivity(Intent(this, GetStartedActivity::class.java))
-                    finish()
-                } else {
-                    Log.d("Logout", "No user to sign out")
-                }
-            }
-
-
-
-//            R.id.nav_logout -> {
-//                if (auth.currentUser != null) {
-//                    auth.signOut()
-//                    startActivity(Intent(this, GetStartedActivity::class.java))
-//                    finish()
-//                }
-//            }
-
-//            R.id.nav_logout -> auth.signOut() -> startActivity(Intent(this, GetStartedActivity::class.java))
-//                Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show()
+            R.id.nav_logout -> Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show()
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
