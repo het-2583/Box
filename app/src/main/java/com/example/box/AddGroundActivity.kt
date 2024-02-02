@@ -1,5 +1,9 @@
 package com.example.box
 
+
+
+
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -15,7 +19,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.util.UUID
 
-class AddGroundActivity : AppCompatActivity() {
+class AddGroundActivity  : AppCompatActivity() {
     private lateinit var databaseReference: FirebaseDatabase
     private lateinit var storageReference: StorageReference
 
@@ -56,9 +60,16 @@ class AddGroundActivity : AppCompatActivity() {
         }
         val SubmitButton: Button = findViewById(R.id.selectimage)
         SubmitButton.setOnClickListener{
-            saveImageToDatabase()
+            if (::selectedImageUri.isInitialized) {
+                uploadImage(selectedImageUri)
+            } else {
+                // Display an error message or handle the case where no image has been selected
+            }
+            saveImageToDatabase("imageUrl")
+
         }
     }
+    private lateinit var selectedImageUri: Uri
     private fun openImagePicker() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
