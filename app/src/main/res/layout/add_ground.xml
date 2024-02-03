@@ -36,8 +36,8 @@
         android:layout_marginEnd="34dp"
         android:layout_marginBottom="1dp"
         android:ems="10"
+        android:hint="Box Name"
         android:inputType="text"
-        android:text="Box Name"
         android:textColor="#A39F9F"
         android:textStyle="bold" />
 
@@ -51,8 +51,8 @@
         android:layout_marginEnd="34dp"
         android:layout_marginBottom="326dp"
         android:ems="10"
+        android:hint="Box Price"
         android:inputType="text"
-        android:text="Box price"
         android:textColor="#A39F9F"
         android:textStyle="bold" />
 
@@ -80,9 +80,9 @@
         android:layout_marginBottom="100dp"
         android:ems="10"
         android:gravity="top|start"
+        android:hint="address"
         android:inputType="textMultiLine|textCapSentences"
         android:lines="5"
-        android:text="address"
         android:textColor="#A39F9F"
         android:textStyle="bold" />
 
